@@ -15,7 +15,7 @@
     <!-- </header> -->
     
     <main>
-        <h1 class="home-page-title">Home Page</h1>
+        <h1 class="home-page-title">Welcome to the Home Page</h1>
         <h3 class="home-page-subtitle">Featuring Amazing Ducks</h3>
         <div class="grid">
             <div class="grid-item">
