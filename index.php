@@ -3,8 +3,21 @@
     include('./config/db.php');
 
     // create SQL Query
+    $sql = "SELECT name,favorite_foods,img_src FROM ducks";
 
     // query the DB and add the result to a php array
+    $result = mysqli_query($conn, $sql);
+    $ducks = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    // free result from memory and close SQL coonnection
+    mysqli_free_result($result);
+    mysqli_close($conn);
+
+    // foreach($ducks as $duck) {
+    //     echo $duck['name'];
+    // }
+    // print_r($ducks); to show data
+
 ?>
 
 <!DOCTYPE html>
@@ -27,13 +40,17 @@
         <h1 class="home-page-title">Welcome to the Home Page</h1>
         <h3 class="home-page-subtitle">Featuring Amazing Ducks</h3>
         <div class="grid">
-            <div class="grid-item">
-                <h1>Barbie Duck</h1>
-                <img class="grid-img" src="./assets/img/Barbie-Duck.png" alt="Rubber Duck that looks like Barbie">
-                <ul>
-                    <li>This ducky's favorite food is Crumpets with Honey</li>
-                </ul>
-            </div>
+
+            <?php foreach($ducks as $duck) : ?>
+                <div class="grid-item">
+                    <h1>Barbie Duck</h1>
+                    <img class="grid-img" src="./assets/img/Barbie-Duck.png" alt="Rubber Duck that looks like Barbie">
+                    <ul>
+                        <li>This ducky's favorite food is Crumpets with Honey</li>
+                    </ul>
+                </div>
+            <?php endforeach ?>
+
             <div class="grid-item">
                 <h1>Cowboy Duck</h1>
                 <img class="grid-img" src="./assets/img/Cowboy-Duck.png" alt="Rubber Duck that looks like a cowboy">
