@@ -43,52 +43,26 @@
 
             <?php foreach($ducks as $duck) : ?>
                 <div class="grid-item">
-                    <h1>Barbie Duck</h1>
-                    <img class="grid-img" src="./assets/img/Barbie-Duck.png" alt="Rubber Duck that looks like Barbie">
+                    <h1><?php echo $duck['name']?></h1>
+
+                    <img class="grid-img" src="<?php echo $duck["img_src"]; ?>" width="300" height="300" alt="Rubber Duck that looks like Barbie">
+                    <?php
+                    // Break duck's favorite foods into an array by comma
+                    $food_list = explode(",", $duck["favorite_foods"]);
+                    // print_r($food_list);
+                    ?>
                     <ul>
-                        <li>This ducky's favorite food is Crumpets with Honey</li>
+                        <?php foreach($food_list as $food) : ?>
+                            <li><?php echo $food ?></li>
+                        <?php endforeach ?>
                     </ul>
                 </div>
             <?php endforeach ?>
 
-            <div class="grid-item">
-                <h1>Cowboy Duck</h1>
-                <img class="grid-img" src="./assets/img/Cowboy-Duck.png" alt="Rubber Duck that looks like a cowboy">
-                <ul>
-                    <li>This ducky's favorite foods are Beans and Bread</li>
-                </ul>
-            </div>
-            <div class="grid-item">
-                <h1>Einstein Duck</h1>
-                <img class="grid-img" src="./assets/img/Einstein-Duck.png" alt="Rubber Duck that looks like Einstein">
-                <ul>
-                    <li>This ducky's favorite snack are Strawberries</li>
-                </ul>
-            </div>
-            <div class="grid-item">
-                <h1>Art Duck</h1>
-                <img class="grid-img" src="./assets/img/Art-Duck.png" alt="Rubber Duck that looks like an artist">
-                <ul>
-                    <li>This ducky's favorite snack is Cheese and Crackers</li>   
-                </ul>
-            </div>
-            <div class="grid-item">
-                <h1>OG Rubber Duck</h1>
-                <img class="grid-img" src="./assets/img/Original-Duck.png" alt="Rubber Duck that looks like the original rubber duck">
-                <ul>
-                    <li>This ducky's favorite food is Scrambled Eggs</li>
-                </ul>
-            </div>
-            <div class="grid-item">
-                <h1>Airforce Officer Duck</h1>
-                <img class="grid-img" src="./assets/img/Airforce-Duck.png" alt="Rubber Duck that looks like a US Airforce Officer">
-                <ul>
-                    <li>This ducky's favorite foods are Meatloaf and Chicken</li>
-                </ul>
-            </div>
         </div>
     </main>
 
     <!-- <footer> -->
         <?php include('./components/footer.php'); ?>
     <!-- </footer> -->
+    <!-- a good thing to remember that Brian said is to include width and height for image on card because it keeps the content in the card at the same height/alignment. -->

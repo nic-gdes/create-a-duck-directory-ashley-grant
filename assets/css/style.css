@@ -95,9 +95,6 @@ h1 {
     font-size: 11px;
     padding: 5px;
     max-width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     list-style: none;
 }
 
