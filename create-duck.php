@@ -8,7 +8,7 @@
 <?php
 if (isset($_POST['submit'])) {
     $name = htmlspecialchars($_POST(['name']));
-    $food = htmlspecialchars($_POST(['food']));//this $email comes from the input name
+    $food = htmlspecialchars($_POST(['food']));
     $message = htmlspecialchars($_POST(['message']));
 
     echo $name . ", " . $food . ", " . $message;
@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) {
 </html>
 
 <!-- FORM -->
-<form class="form-style" action="./create-duck.php" method="POST">
+<form class="form-style" action="create-duck.php" method="POST">
     <p>NAME</p>
     <input class="form-item" type="text" />
     <p>FAVORITE FOODS</p>
