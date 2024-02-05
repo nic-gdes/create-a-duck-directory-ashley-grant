@@ -16,7 +16,14 @@ header img {
     display: flex;
     justify-content: center;
     margin: 20px;
+    margin-bottom: 0;
     font-size: 40px;
+}
+
+.home-page-subtitle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
 h1 {
@@ -70,10 +77,15 @@ h1 {
 
 .grid-item {
     display: grid;
-    width: 90%;
+    /* width: 90%; */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 15px;
     background-color: white;
+}
+
+.grid-item img {
+    display: flex;
+    justify-content: center;
 }
 
 p {
