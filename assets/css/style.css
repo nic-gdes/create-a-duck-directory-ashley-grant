@@ -1,22 +1,27 @@
 body {
     margin: 0;
     background-color: rgb(251, 255, 210);
-    padding: 10px
 }
 
 header img {
-    width: 40px;
+    width: 80px;
 }
 
-header {
+.top-header {
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
+.home-page-title {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    font-size: 40px;
 }
 
 h1 {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
+    font-size: 20px;
 }
 
 h3 {
@@ -25,12 +30,25 @@ h3 {
     font-size: 10px;
 }
 
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header nav ul {
+    display: flex;
+    align-items: center;
+}
+
 nav ul li {
     list-style: none;
     text-decoration: none;
+    padding: 5px;
+    margin: 5px;
 }
 
-a{
+a {
     text-decoration: none;
     color: black;
 }
@@ -44,7 +62,6 @@ h1 {
     grid-template: 1fr / 300px;
     grid-gap: 20px;
     justify-content: center;
-    background-color: white;
 }
 
 .grid img {
@@ -55,10 +72,8 @@ h1 {
     display: grid;
     width: 90%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.grid-img {
-    max-width: 100%;
+    padding: 15px;
+    background-color: white;
 }
 
 p {
@@ -78,8 +93,14 @@ footer {
 .footer-style {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     font-size: 10px;
+}
+
+.footer-style ul {
+    padding: 0;
+    display: flex;
+    align-items: center;
 }
 
 
