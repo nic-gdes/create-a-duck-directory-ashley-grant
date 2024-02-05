@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php $page_title = "Contact";
+<?php $page_title = "Profile";
     include('./components/head.php');
 ?>
 
@@ -16,8 +16,13 @@ if (isset($_POST['submit'])) {
 ?>
 
 <body>
-    <h1>Profile Page</h1>
+
+    <!-- <header> -->
     <?php include('./components/nav.php'); ?>
+    <!-- </header> -->
+
+    <h1 class="home-page-title">Profile Page</h1>
+    <h3 class="home-page-subtitle">Create A Duck!</h3>
 </body>
 </html>
 
@@ -34,4 +39,6 @@ if (isset($_POST['submit'])) {
     <input type="submit" value="Send form" />
 </form>
 
-<?php include('./components/footer.php'); ?>
+    <!-- <footer> -->
+        <?php include('./components/footer.php'); ?>
+    <!-- </footer> -->

@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/style.css?v=<?php echo time(); ?>">
-    <title>Ducks</title>
-</head>
+
+<!-- <head> -->
+    <?php
+        $page_title = "Home";
+        include('./components/head.php');
+    ?>
+<!-- </head> -->
+
 <body>
-<header class="top-header">
-    <nav>
-        <a href="/"><img src="../assets/img/Duck Logo Black.png" alt="Duck Logo in black and white"/></a>
-        <ul>
-            <li><a href="/">Home Page</a></li>
-            <li><a href="./profile.php">Duck Profile</a></li>
-        </ul>
-    </nav>
-</header>
+
+    <!-- <header> -->
+        <?php include('./components/nav.php'); ?>
+    <!-- </header> -->
+    
     <main>
         <h1 class="home-page-title">Home Page</h1>
         <h3 class="home-page-subtitle">Featuring Amazing Ducks</h3>
@@ -52,17 +50,7 @@
             </div>
         </div>
     </main>
-    <div class="footer-style">
-    <nav>
-        <ul>
-            <li><a href="/">Home Page</a></li>
-            <li><a href="./contact.php">Duck Profile</a></li>
-        </ul>
-    </nav>
 
-    <footer>
-        &copy; <?php echo date("Y") ?> GDES. All Rights Reserved.
-    </footer>
-</div>
-</body>
-</html>
+    <!-- <footer> -->
+        <?php include('./components/footer.php'); ?>
+    <!-- </footer> -->
