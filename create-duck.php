@@ -13,6 +13,43 @@
         $favorite_foods = htmlspecialchars($_POST["favorite_foods"]);
         $bio = htmlspecialchars($_POST["bio"]);
 
+
+
+        // check if the name exists
+        if(empty($name)) {
+
+            // if it doesn't throw error "required"
+            $errors['name'] = "A name is required.";
+        } else {
+            // if it does, check against regex
+
+            if(!preg_match('/^[a-z\s]+$/i', $name)) {
+                // if fails regex, throw "incorrect formatting error"
+                $errors["name"] = "The name has illegal characters";
+            }
+        }
+
+
+        // check if favorite foods exists
+        if(empty($favorite_foods)) {
+
+            // if it doesn't throw error "required"
+            $errors['favorite_foods'] = "No favorite foods? You got a hungry duck.";
+
+        } else {
+            // if it does, check against regex
+
+            if(!preg_match('/^[a-z,\s]+$/i', $favorite_foods)) {
+
+                // if fails regex, throw "incorrect formatting error"
+                $errors['favorite_foods'] = "Favorite foods must be a comma separated list.";
+
+            }
+
+        }
+
+
+
         if(preg_match('/^[a-z\s]+$/i', $name)) {
             // echo "this name is formatted correctly";
         } else {
@@ -25,7 +62,20 @@
             $errors["favorite_foods"] = "Favorite foods must be a comma separated list";
         }
 
-        print_r($errors);
+        // check if bio is empty
+        if(empty($bio)) {
+            //error if so
+            $errors[$bio] = "A bio is required.";
+        }
+
+        // print_r($errors);
+
+        if(!array_filter($errors)) {
+            // if there are any errors
+            header("Location: ./index.php");
+        } else {
+            // everything is good; form is valid
+        }
     }
 
 ?>
@@ -68,11 +118,31 @@
     </div>
     <div class="input-group">
         <label for="name">Duck's Name</label>
-        <input class="form-item" type="text" id="name" name="name" placeholder="Charli" required />
+
+        <?php
+            if (isset($errors['name'])) {
+                echo "<div class='error'>" . $errors["name"] . "</div>";
+            }
+        ?>
+
+        <input
+        class="form-item"
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Charli"
+        value="<?php if(isset($name)) { echo $name; } ?>" 'required />
     </div>
     <div class="input-group">
         <label for="foods">Duck's Favorite Foods (Separate multiple with a comma)</label>
-        <input class="form-item" type="text" id="foods" name="favorite_foods" placeholder="eggs, tofu, jam" required />
+
+        <?php
+            if (isset($errors['favorite_foods'])) {
+                echo "<div class='error'>" . $errors["favorite_foods"] . "</div>";
+            }
+        ?>
+
+        <input class="form-item" type="text" id="foods" name="favorite_foods" placeholder="eggs, tofu, jam" value="<?php if(isset($favorite_foods)) { echo $favorite_foods; } ?>" 'required />
     </div>
     <div class="input-group">
         <label for="image">Duck's Picture</label>
@@ -80,7 +150,14 @@
     </div>
     <div class="input-group">
         <label for="bio">Biography</label>
-        <textarea class="form-item" name="bio" id="bio" cols="30" rows="10" placeholder="Talk about your duck..." required></textarea>
+
+        <?php
+            if (isset($errors['bio'])) {
+                echo "<div class='error'>" . $errors["bio"] . "</div>";
+            }
+        ?>
+
+        <textarea class="form-item" name="bio" id="bio" cols="30" rows="10" placeholder="Talk about your duck..." 'required></textarea>
         <!-- <input type="color" />
         <input type="date" />
         <input type="number" />
