@@ -13,12 +13,21 @@
         $favorite_foods = htmlspecialchars($_POST["favorite_foods"]);
         $bio = htmlspecialchars($_POST["bio"]);
 
-        if(preg_match('/[a-zA-Z\s]+/',$name)) {
-            echo "there is a name";
+        if(preg_match('/^[a-z\s]+$/i', $name)) {
+            // echo "this name is formatted correctly";
         } else {
-            echo "the name has the wrong characters";
+            $errors["name"] = "The name has illegal characters";
         }
+
+        if(preg_match('/^[a-z,\s]+$/i', $favorite_foods)) {
+            // echo "The foods is formatted correctly";
+        } else {
+            $errors["favorite_foods"] = "Favorite foods must be a comma separated list";
+        }
+
+        print_r($errors);
     }
+
 ?>
 
 
