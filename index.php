@@ -6,7 +6,7 @@
     $sql = "SELECT name,favorite_foods,img_src FROM ducks";
 
     // query the DB and add the result to a php array
-    $result = mysqli_query($conn, $sql);
+    $result = mysqli_query($conn,$sql);
     $ducks = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
     // free result from memory and close SQL coonnection

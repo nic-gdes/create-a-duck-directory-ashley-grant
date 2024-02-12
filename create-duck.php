@@ -65,16 +65,30 @@
         // check if bio is empty
         if(empty($bio)) {
             //error if so
-            $errors[$bio] = "A bio is required.";
+            $errors["bio"] = "A bio is required.";
         }
 
         // print_r($errors);
 
         if(!array_filter($errors)) {
-            // if there are any errors
+            // everything is good; form is valid
+            
+            // connect to the database
+            require('./config/db.php');
+
+            // build sql query
+            $sql = "INSERT INTO ducks (name, favorite_foods, bio) VALUES ('$name', '$favorite_foods', '$bio')";
+
+            // execute query in mysql
+            mysqli_query($conn, $sql);
+
+            // echo "Query is successful. Added: " . $name . " to database.";
+            
+            
+            // load homepage
             header("Location: ./index.php");
         } else {
-            // everything is good; form is valid
+            // if there are any errors
         }
     }
 
