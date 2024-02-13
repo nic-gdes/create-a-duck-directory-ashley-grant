@@ -65,4 +65,6 @@
     <!-- <footer> -->
         <?php include('./components/footer.php'); ?>
     <!-- </footer> -->
+
+    
     <!-- a good thing to remember that Brian said is to include width and height for image on card because it keeps the content in the card at the same height/alignment. -->
