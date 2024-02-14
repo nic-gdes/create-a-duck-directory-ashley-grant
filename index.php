@@ -42,6 +42,7 @@
         <div class="grid">
 
             <?php foreach($ducks as $duck) : ?>
+                <a href="./profile.php">
                 <div class="grid-item">
                     <h1><?php echo $duck['name']?></h1>
 
@@ -57,6 +58,7 @@
                         <?php endforeach ?>
                     </ul>
                 </div>
+                </a>
             <?php endforeach ?>
 
         </div>
