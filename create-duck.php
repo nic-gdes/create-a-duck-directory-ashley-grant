@@ -6,12 +6,14 @@
         $errors = array(
             "name" => "",
             "favorite_foods" => "",
-            "bio" => ""
+            "bio" => "",
+            "img_src" => ""
         );
 
         $name = htmlspecialchars($_POST["name"]);
         $favorite_foods = htmlspecialchars($_POST["favorite_foods"]);
         $bio = htmlspecialchars($_POST["bio"]);
+        $img_src = $_FILES["img_src"]["name"];
 
 
 
@@ -70,6 +72,28 @@
 
         // print_r($errors);
 
+
+
+        // Handle file upload target directory
+        $target_dir =  "./assets/images/";
+
+        // Target uploaded image file
+        $image_file = $targer_dir . basename($_FILES["img_src"]["name"]);
+
+        // Get uploaded file extention so we can test to make sure it's an image
+        $image_file_type = strtolower(pathinfo($image_file,PATHINFO_EXTENSION));
+
+        // Test image for errors
+            // image exists
+            if
+
+            // file type (if it's an image)
+
+            // file size limit
+
+            // check if file already exists so not reuploads
+
+
         if(!array_filter($errors)) {
             // everything is good; form is valid
             
@@ -125,7 +149,7 @@
 </html>
 
 <!-- FORM -->
-<form class="form-style" action="create-duck.php" method="POST">
+<form class="form-style" action="create-duck.php" method="POST" enctype="multipart/form-data">
     <div class="form-intro">
         <h1>Want A New Duck?</h1>
         <p>Fill out this form to add a new duck!</p>
