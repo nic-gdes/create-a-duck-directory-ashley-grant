@@ -75,7 +75,7 @@
 
 
         // Handle file upload target directory
-        $target_dir =  "./assets/images/";
+        $target_dir =  "./assets/img/";
 
         // Target uploaded image file
         $image_file = $target_dir . basename($_FILES["img_src"]["name"]);
@@ -90,25 +90,28 @@
             } else {
 
             // Check that the image file is an actual image
-            $size_check = getimagesize($_FILES["img_src"]["tmp_name"]);
-            if(!$size_check) {
-                $errors["img_src"] = "File is not an image.";
-            }
-
-            // file size limit
+            $size_check = @getimagesize($_FILES["img_src"]["tmp_name"]);
             $file_size = $_FILES["img_src"]["size"];
-            if ($file_size > 500000) {
+
+            if(!$size_check) {
+                // check if file is an image
+                $errors["img_src"] = "File is not an image.";
+            } else if ($file_size > 500000) {
+                // file size limit
                 $errors["img_src"] = "Filesize limit exceeded. (cannot be larger than 500kb)";
-            }
-
-            // file type (if it's an image)
-            if($image_file_type != "jpg" && $image_file_type != "png" && $image_file_type != "jpeg" && $image_file_type != "gif" && $image_file_type != "webp") {
+            } else if(
+                // file type (if it's an image)
+                $image_file_type != "jpg" && $image_file_type != "png" && $image_file_type != "jpeg" && $image_file_type != "gif" && $image_file_type != "webp") {
                 $errors["img_src"] = "Sorry, only JPG, JPEG, PNG, GIF, or WEBP files are allowed.";
+            } else if (
+                // check if file already exists so not reuploads
+                move_uploaded_file($_FILES["img_src"]["tmp_name"], $image_file)) {
+                //file uploaded successfully
+            } else  {
+                $errors["img_src"] = "Sorry, there was an error uploading your file.";
             }
 
-            // check if file already exists so not reuploads
-
-            }
+        }
 
  
         if(!array_filter($errors)) {
@@ -118,7 +121,7 @@
             require('./config/db.php');
 
             // build sql query
-            $sql = "INSERT INTO ducks (name, favorite_foods, bio) VALUES ('$name', '$favorite_foods', '$bio')";
+            $sql = "INSERT INTO ducks (name, favorite_foods, bio, img_src) VALUES ('$name', '$favorite_foods', '$bio', '$image_file')";
 
             // execute query in mysql
             mysqli_query($conn, $sql);
@@ -201,6 +204,13 @@
     </div>
     <div class="input-group">
         <label for="image">Duck's Picture</label>
+
+        <?php
+            if (isset($errors['img_src'])) {
+                echo "<div class='error'>" . $errors["img_src"] . "</div>";
+            }
+        ?>
+
         <input class="form-item" type="file" name="img_src"/>
     </div>
     <div class="input-group">
