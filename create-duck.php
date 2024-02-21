@@ -78,22 +78,39 @@
         $target_dir =  "./assets/images/";
 
         // Target uploaded image file
-        $image_file = $targer_dir . basename($_FILES["img_src"]["name"]);
+        $image_file = $target_dir . basename($_FILES["img_src"]["name"]);
 
         // Get uploaded file extention so we can test to make sure it's an image
         $image_file_type = strtolower(pathinfo($image_file,PATHINFO_EXTENSION));
 
         // Test image for errors
             // image exists
-            if
+            if (empty($img_src)) {
+                $errors["img_src"] = "An image is required.";
+            } else {
 
-            // file type (if it's an image)
+            // Check that the image file is an actual image
+            $size_check = getimagesize($_FILES["img_src"]["tmp_name"]);
+            if(!$size_check) {
+                $errors["img_src"] = "File is not an image.";
+            }
 
             // file size limit
+            $file_size = $_FILES["img_src"]["size"];
+            if ($file_size > 500000) {
+                $errors["img_src"] = "Filesize limit exceeded. (cannot be larger than 500kb)";
+            }
+
+            // file type (if it's an image)
+            if($image_file_type != "jpg" && $image_file_type != "png" && $image_file_type != "jpeg" && $image_file_type != "gif" && $image_file_type != "webp") {
+                $errors["img_src"] = "Sorry, only JPG, JPEG, PNG, GIF, or WEBP files are allowed.";
+            }
 
             // check if file already exists so not reuploads
 
+            }
 
+ 
         if(!array_filter($errors)) {
             // everything is good; form is valid
             
@@ -184,7 +201,7 @@
     </div>
     <div class="input-group">
         <label for="image">Duck's Picture</label>
-        <input class="form-item" type="file" />
+        <input class="form-item" type="file" name="img_src"/>
     </div>
     <div class="input-group">
         <label for="bio">Biography</label>
