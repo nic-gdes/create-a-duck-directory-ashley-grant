@@ -1,5 +1,7 @@
 <?php
 
+$duck_is_live = false;
+
 if (isset($_GET['id'])) {
     // Assign a variable to the id
     $id = htmlspecialchars($_GET['id']);
@@ -17,6 +19,11 @@ if (isset($_GET['id'])) {
         mysqli_free_result($result);
         mysqli_close($conn);
 
+        // print_r($duck);
+
+        if(isset($duck['id'])) {
+        $duck_is_live = true;
+        }
 }
 
 ?>
@@ -38,6 +45,7 @@ if (isset($_GET['id'])) {
     <!-- </header> -->
 
 <main>
+    <?php if ($duck_is_live) : ?>
         <h1 class="home-page-title">Duck Profile</h1>
         <h3 class="home-page-subtitle">Your New Duck is Added Below!</h3>
         <div class="grid">
@@ -45,6 +53,21 @@ if (isset($_GET['id'])) {
                 <h1><?php echo $duck['name']; ?></h1>
                 <img class="grid-img" src="<?php echo $duck['img_src']; ?>" alt="duck">
                 <p><?php echo $duck['bio']; ?></p>
-                <p><h3>Favorite Foods:</h3><?php echo $duck['favorite_foods']; ?></p>
+                <!-- <p><h3>Favorite Foods:</h3><php echo $duck['favorite_foods']; ?></p> -->
+                <ul>
+                    <?php $food_list = explode(",", $duck["favorite_foods"]); ?>
+                    <?php foreach($food_list as $food) : ?>
+                            <li><?php echo $food ?></li>
+                        <?php endforeach ?>
+                </ul>
             </div>
+    <?php else : ?>
+        <section class="no duck">
+            <h1>Sorry, this duck does not exist</h1>
+        </section>
+    <?php endif ?>
+
+<!-- <footer> -->
+    <?php include('./components/footer.php'); ?>
+<!-- </footer> -->
             
