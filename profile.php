@@ -10,7 +10,7 @@ if (isset($_GET['id'])) {
         // Connect to db
         require('./config/db.php');
 
-        // Create a query to selecrt the intended duck from the db
+        // Create a query to select the intended duck from the db
         $sql = "SELECT id, name, favorite_foods, bio, img_src FROM ducks WHERE id=$id";
         $result = mysqli_query($conn, $sql);
 
@@ -21,8 +21,10 @@ if (isset($_GET['id'])) {
 
         // print_r($duck);
 
+        // Check is $duck has a valid id
         if(isset($duck['id'])) {
-        $duck_is_live = true;
+            // Switch on $duck_is_live
+            $duck_is_live = true;
         }
 }
 
