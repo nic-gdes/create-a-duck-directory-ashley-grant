@@ -20,6 +20,7 @@
 
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,7 +43,7 @@
         <div class="grid">
 
             <?php foreach($ducks as $duck) : ?>
-                <a href="./profile.php">
+                <a href="./profile.php?id=<?php echo $duck['id']; ?>">
                 <div class="grid-item">
                     <h1><?php echo $duck['name']?></h1>
 

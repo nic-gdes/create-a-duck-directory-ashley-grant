@@ -1,5 +1,25 @@
 <?php
 
+
+require(isset($_GET['id'])) {
+
+    $id = $_GET['id'];
+}
+
+if (isset($_POST['delete'])) {
+    
+    $id_to_delete = (int)$_POST('id_to_delete');
+
+    $delete_sql = "DELETE FROM example WHERE id='id_to_delete'";
+
+    if (mysqli_query($conn, $delete_sql)) {
+            echo "Record deleted successfully";
+    } else {
+            echo "Error deleting record; " . mysqli_error($conn);
+    }
+}
+
+
 $duck_is_live = false;
 
 if (isset($_GET['id'])) {
@@ -62,6 +82,12 @@ if (isset($_GET['id'])) {
                             <li><?php echo $food ?></li>
                         <?php endforeach ?>
                 </ul>
+
+                <form action="./profile.php" method="POST">
+                    <input type="hidden" name="id_to_delete" value="<?php echo $duck['id']; ?>">
+                    <input type="submit" name="delete" value="Delete Duck">
+                </form>
+                
             </div>
     <?php else : ?>
         <section class="no duck">
