@@ -47,7 +47,7 @@
                 <div class="grid-item">
                     <h1><?php echo $duck['name']?></h1>
 
-                    <img class="grid-img" src="<?php echo $duck["img_src"]; ?>" width="300" height="300" alt="Rubber Duck that looks like Barbie">
+                    <img class="grid-img" src="<?php echo $duck["img_src"]; ?>" alt="Rubber Duck that looks like Barbie">
                     <?php
                     // Break duck's favorite foods into an array by comma
                     $food_list = explode(",", $duck["favorite_foods"]);
