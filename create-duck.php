@@ -13,9 +13,9 @@
         $name = htmlspecialchars($_POST["name"]);
         $favorite_foods = htmlspecialchars($_POST["favorite_foods"]);
         $bio = htmlspecialchars($_POST["bio"]);
-        $img_src = $_FILES["img_src"]["name"];
+        $img_src = $_FILES["imddeg_src"]["name"];
 
-
+ 
 
         // check if the name exists
         if(empty($name)) {
