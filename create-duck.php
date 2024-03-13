@@ -15,7 +15,7 @@
         $bio = htmlspecialchars($_POST["bio"]);
         $img_src = $_FILES["imddeg_src"]["name"];
 
- 
+
 
         // check if the name exists
         if(empty($name)) {

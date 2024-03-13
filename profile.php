@@ -89,6 +89,7 @@ if (isset($_GET['id'])) {
             <h1>Sorry, this duck does not exist</h1>
         </section>
     <?php endif ?>
+</main>
 
 <!-- <footer> -->
     <?php include('./components/footer.php'); ?>
