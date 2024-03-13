@@ -1,22 +1,17 @@
 <?php
 
 
-require(isset($_GET['id'])) {
-
-    $id = $_GET['id'];
-}
+// Connect to db
+require('./config/db.php');
 
 if (isset($_POST['delete'])) {
     
-    $id_to_delete = (int)$_POST('id_to_delete');
+    $id_to_delete = (int)$_POST['id_to_delete'];
 
-    $delete_sql = "DELETE FROM example WHERE id='id_to_delete'";
+    $sql_delete = "DELETE FROM ducks WHERE id='$id_to_delete'";
 
-    if (mysqli_query($conn, $delete_sql)) {
-            echo "Record deleted successfully";
-    } else {
-            echo "Error deleting record; " . mysqli_error($conn);
-    }
+    mysqli_query($conn, $sql_delete);
+    header ("Location: ./index.php");
 }
 
 
